@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-arabic: "Amiri", "Times New Roman", serif;
+
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f8f4ec;
+  --color-cream-200: #f2ebe0;
+  --color-cream-300: #e9dfd0;
+  --color-cream-400: #ddd0ba;
+
+  --color-sand-300: #d8c8ac;
+  --color-sand-400: #c4ae8b;
+  --color-sand-500: #ad936d;
+  --color-sand-600: #927a58;
+
+  --color-ink-300: #b3a898;
+  --color-ink-400: #918676;
+  --color-ink-500: #72685a;
+  --color-ink-600: #5b5348;
+  --color-ink-700: #464038;
+  --color-ink-800: #35302a;
+  --color-ink-900: #26221e;
+
+  --color-sage-400: #8ba395;
+  --color-sage-500: #6f8b7c;
+  --color-sage-600: #58705f;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream-100 text-ink-800 antialiased;
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(circle at 12% -10%, rgba(196, 174, 139, 0.22), transparent 45%),
+      radial-gradient(circle at 92% 0%, rgba(139, 163, 149, 0.14), transparent 40%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(216, 200, 172, 0.6);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-cream-400) transparent;
+  }
+  *::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-cream-400);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-cream-300 bg-cream-50/90 shadow-[0_1px_2px_rgba(70,64,56,0.04),0_12px_28px_-24px_rgba(70,64,56,0.35)];
+  }
+  .card-pad {
+    @apply p-4 sm:p-5;
+  }
+  .label {
+    @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-400;
+  }
+  .input {
+    @apply w-full rounded-xl border border-cream-300 bg-white/80 px-3.5 py-2.5 text-sm font-medium text-ink-800 outline-none transition
+      placeholder:font-normal placeholder:text-ink-300
+      focus:border-sand-400 focus:bg-white focus:ring-4 focus:ring-sand-300/25;
+  }
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost,
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-ink-800 text-cream-100 hover:bg-ink-900 active:translate-y-px;
+  }
+  .btn-secondary {
+    @apply border border-cream-300 bg-cream-50 text-ink-700 hover:border-sand-300 hover:bg-cream-200;
+  }
+  .btn-ghost {
+    @apply text-ink-500 hover:bg-cream-200 hover:text-ink-800;
+  }
+  .btn-danger {
+    @apply border border-red-200 bg-red-50 text-red-700 hover:bg-red-100;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-cream-300 bg-cream-100 px-2.5 py-1 text-[11px] font-semibold text-ink-500;
+  }
+  .table-head {
+    @apply whitespace-nowrap px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-400;
+  }
+  .table-cell {
+    @apply px-4 py-3 text-sm text-ink-700;
+  }
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-ink-500 transition hover:bg-cream-200/80 hover:text-ink-800;
+  }
+  .nav-link-active {
+    @apply bg-ink-800 text-cream-100 shadow-sm hover:bg-ink-800 hover:text-cream-100;
+  }
+  .stat-value {
+    @apply text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px];
+  }
+}
+
+@layer utilities {
+  .font-arabic {
+    font-family: var(--font-arabic);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  body {
+    background: #fff !important;
+    background-image: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-full {
+    box-shadow: none !important;
+    border-color: #e5e0d8 !important;
+    background: #fff !important;
+  }
+  .print-break-avoid {
+    break-inside: avoid;
+  }
+}

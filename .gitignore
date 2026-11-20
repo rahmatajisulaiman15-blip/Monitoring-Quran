@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-worker/
+.tools/
+.wrangler/
+.freebuff/
+project-id
+.dev.vars
+.env
+*.log
+cookies.txt
+*.zip
